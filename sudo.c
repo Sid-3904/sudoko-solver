@@ -2,71 +2,45 @@
 #include <windows.h>
 #include <conio.h>
 
-void gotoxy(int X, int Y) {
-    HANDLE Screen;
-    Screen = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD Position = {X, Y};
-    SetConsoleCursorPosition(Screen, Position);
-}
+#define for(i, n) for(int i=0; i<n; i++)
+
+
 
 void main() {
-    int x=2, y=1;
-    system("cls");
-    printf("-------------\n");
-    printf("| * * | * * |\n");
-    printf("| * * | * * |\n");
-    printf("-------------\n");
-    printf("| * * | * * |\n");
-    printf("| * * | * * |\n");
-    printf("-------------\n");
-    gotoxy(x, y);
-    while(1) {
-        if(kbhit()) {
-            char a;
-            a=getch();
-            char buff;
-            while(kbhit() == 1) buff=getch();
-            switch (a) {
-                case 'a' :
-                    if(x>2) {
-                        x-=2;
-                        if(x==6) x-=2;
-                    }
+    enum value{a=1, b=2, c=3, d=4, e=0};
+    enum value sudo[4][4];
+    int n;
+    printf("Enter Values: \n");
+    for(i, 4) {
+        for(j, 4) {
+            scanf("%d", &n);
+            switch(n) {
+                case 1 :
+                    sudo[i][j]=a;
                     break;
-                case 'd' :
-                    if(x<10) {
-                        x+=2;
-                        if(x==6) x+=2;
-                    }
+                case 2 :
+                    sudo[i][j]=b;
                     break;
-                case 's' :
-                    if(y<5) {
-                        y++;
-                        if(y==3) y++;
-                    }
+                case 3 :
+                    sudo[i][j]=c;
                     break;
-                case 'w' :
-                    if(y>1) {
-                        y--;
-                        if(y==3) y--;
-                    }
+                case 4 :
+                    sudo[i][j]=d;
                     break;
-                case 27 :
-                    exit(0);
+                case 0 :
+                    sudo[i][j]=e;
+                    break;
             }
         }
-        gotoxy(x, y);
-        // if(kbhit()) {
-        //     char a;
-        //     a=getch();
-        //     char buff;
-        //     while(kbhit() == 1) buff=getch();
-        //     if(a=='e') {
-        //         printf("\b _");
-        //         int num;
-        //         scanf("%d", &num);
-        //         printf("\b\b%d", num);
-        //     }
-        // }
     }
+    printf("\nYou Entered: \n");
+    for(p, 4) {
+        for(q, 4) {
+            if(sudo[p][q]==0) printf("* ");
+            else printf("%d ", sudo[p][q]);
+        }
+        printf("\n");
+    }
+    // if(n>0 && n<5) printf("%d", val);
+    // else printf("*");
 }
