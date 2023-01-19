@@ -2,9 +2,7 @@
 
 #define fr(i, n) for(int i=0; i<n; i++)
 
-enum value{a=1, b=2, c=3, d=4, e=0};
-
-int chkcel(enum value sudo[4][4], int i, int j) {
+int chkcel(int sudo[4][4], int i, int j) {
     int prob=0, k=0, pssbl[12];
     int box=boxno(i, j);
     fr(num, 4) {
@@ -69,30 +67,13 @@ int boxno(int i, int j) {
 }
 
 void main() {
-    enum value sudo[4][4];
-    int n, empty=0;
+    int sudo[4][4];
+    int empty=0;
     printf("Enter Values: \n");
     fr(i, 4) {
         fr(j, 4) {
-            scanf("%d", &n);
-            if(n==0) empty++;
-            switch(n) {
-                case 1 :
-                    sudo[i][j]=a;
-                    break;
-                case 2 :
-                    sudo[i][j]=b;
-                    break;
-                case 3 :
-                    sudo[i][j]=c;
-                    break;
-                case 4 :
-                    sudo[i][j]=d;
-                    break;
-                case 0 :
-                    sudo[i][j]=e;
-                    break;
-            }
+            scanf("%d", &sudo[i][j]);
+            if(sudo[i][j]==0) empty++;
         }
     }
     printf("\nYou entered: \n");
@@ -122,5 +103,4 @@ void main() {
         }
         printf("\n");
     }
-    printf("\n%d\n", c);
 }
