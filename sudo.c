@@ -2,6 +2,11 @@
 
 #define fr(i, n) for(int i=0; i<n; i++)
 
+typedef struct treenode {
+    int sol[9][9];
+    struct treenode * br[9];
+} node;
+
 int chkcel(int sudo[9][9], int i, int j) {
     int prob=0, k=0, pssbl[30];
     int box=boxno(i, j);
@@ -111,6 +116,16 @@ int boxno(int i, int j) {
     if(i>5 && j>5) return 9;
 }
 
+void printsudo(int sudo[9][9]) {
+    fr(p, 9) {
+        fr(q, 9) {
+            if(sudo[p][q]==0) printf("*");
+            else printf("%d ", sudo[p][q]);
+        }
+        printf("\n");
+    }
+}
+
 void main() {
     int sudo[9][9];
     int empty=0;
@@ -122,13 +137,7 @@ void main() {
         }
     }
     printf("\nYou entered: \n");
-    fr(p, 9) {
-        fr(q, 9) {
-            if(sudo[p][q]==0) printf("* ");
-            else printf("%d ", sudo[p][q]);
-        }
-        printf("\n");
-    }
+    printsudo(sudo);
     int c=0;
     while(empty>0) {
         c++;
@@ -145,10 +154,6 @@ void main() {
         }
     }
     printf("\nSolved: \n");
-    fr(p, 9) {
-        fr(q, 9) {
-            printf("%d ", sudo[p][q]);
-        }
-        printf("\n");
-    }
+    printsudo(sudo);
+
 }
